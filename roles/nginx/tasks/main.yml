@@ -1,0 +1,30 @@
+---
+- name: Nginxインストール(最新版)
+  yum: name={{ item }} state=latest
+  with_items:
+    - "{{ packages }}"
+  notify:
+    - restart php-fpm
+
+- name: Nginx設定ファイル設置
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify:
+   - restart nginx
+
+- name: info.php設置
+  template: src=info.php dest=/usr/share/nginx/info.php
+
+- name: Nginxサービス起動追加
+  service: name=nginx state=running enabled=yes
+
+- name: インデックスファイル設置
+  template: src=index.html.j2 dest={{ansible.root}}/index.html
+
+- name: Ansible構成JSONファイル設置
+  template: src=ansible.json.j2 dest={{ansible.root}}/ansible.json
+
+- name: Ansible構成JSON置換用スクリプト設置
+  template: src=ansible_json_sed.sh dest={{ansible.root}}/ansible_json_sed.sh
+
+- name: Ansible構成JSON置換用スクリプト実行
+  command: sh {{ansible.root}}/ansible_json_sed.sh

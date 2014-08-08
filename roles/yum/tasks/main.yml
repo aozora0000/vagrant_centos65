@@ -1,0 +1,6 @@
+---
+- include: fastermirror.yml
+- include: epel.yml
+- include: remi.yml
+- include: ius.yml
+- include: nginx.yml

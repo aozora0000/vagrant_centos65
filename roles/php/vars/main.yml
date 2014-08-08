@@ -1,0 +1,7 @@
+---
+packages:
+ - php54
+ - php54-common
+ - php54-mysql
+ - php54-mcrypt
+ - php54-xml

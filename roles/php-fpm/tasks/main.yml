@@ -1,0 +1,13 @@
+---
+- name: PHP-FPMインストール
+  yum: name={{ item }} state=latest
+  with_items:
+    - "{{ packages }}"
+
+- name: PHP-FPM設定ファイル設置
+  template: src=www.conf.j2 dest=/etc/php-fpm.d/www.conf
+  notify:
+   - restart php-fpm
+
+- name: PHP-FPMサービス起動追加
+  service: name=php-fpm state=running enabled=yes

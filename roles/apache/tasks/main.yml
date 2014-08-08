@@ -1,0 +1,26 @@
+---
+- name: Apacheインストール(最新版)
+  yum: name={{ item }} state=latest
+  with_items :
+   - "{{ packages }}"
+
+- name: Apache設定ファイル設置
+  template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf
+  notify:
+   - restart httpd
+
+- name: インデックスファイル設置
+  template: src=index.html.j2 dest=/var/www/html/index.html
+  notify:
+   - restart httpd
+
+- name: info.php設置
+  template: src=info.php dest=/usr/share/nginx/info.php
+
+- name: wellcome.conf削除
+  file: path=/etc/httpd/conf.d/welcome.conf state=absent
+  notify:
+   - restart httpd
+
+- name: Apacheサービス起動追加
+  service: name=httpd state=running enabled=yes

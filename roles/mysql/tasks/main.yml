@@ -1,0 +1,8 @@
+---
+- name: MySQLインストール
+  yum:  name={{ item }} state=installed
+  with_items :
+   - "{{ packages }}"
+
+- name: MySQLサービス起動追加
+  service: name=mysqld state=running enabled=yes

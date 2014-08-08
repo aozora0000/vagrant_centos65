@@ -1,0 +1,10 @@
+- hosts: all
+  user: vagrant
+  sudo: yes
+  roles:
+   - yum
+   - common
+   - mysql
+   - php
+   - nginx
+   - php-fpm

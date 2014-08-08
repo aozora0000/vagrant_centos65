@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CreateByAnsible</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+	<style>
+		#ansible {
+			width: 100%;
+			max-width: 1024px;
+			margin: 0 auto;
+		}
+		.pure-g {
+			letter-spacing: 0em !important;
+		}
+		table {
+			width: 100%;
+			border-collapse:collapse;
+			border:0px;
+		}
+		th + td {
+			border-left: 1px solid #EFEFEF;
+		}
+		tr {
+			width: 100%;
+		}
+		th {
+			width: 20%;
+		}
+		td {
+			width: 80%;
+		}
+		tr:nth-child(even) {
+			background: #FFFFFF;
+		}
+		tr:nth-child(even) {
+			background: #F0F0F0;
+		}
+		tr table:nth-child(odd) {
+			background: #FFFFFF;
+		}
+		tr table:nth-child(even) {
+			background: #F0F0F0;
+		}
+		pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			overflow: auto;
+			max-width: 800px;
+			padding: 0;
+			margin: 0;
+			text-indent: 1em;
+		}
+		body {
+			line-height: 2em;
+		}
+	</style>
+</head>
+<body>
+	<div class="pure-g">
+		<h1>このページは{{ ansible_eth1.ipv4.address}}のページです</h1>
+		<h2>ルートディレクトリは[{{ ansible.root }}]です</h2>
+		<table id="ansible" class="pure-table"></table>
+	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$.get("http://192.168.1.91/ansible.json",function(json) {
+				$("#ansible").html(createTable(json));
+			});
+		});
+		function createTable(obj) {
+			table = $("<table><table>");
+			html = "";
+			Object.keys(obj).forEach(function(key) {
+				if(isObject(obj[key])) {
+					html += createTr(key,'<table>'+createTable(keySort(obj[key]))+'</table>');
+				} else {
+					html += createTr(key,obj[key]);
+				}
+			});
+			return html;
+		}
+		function createTr(key,value) {
+			th = $("<th></th>");
+			tr = $('<tr></tr>');
+			td = $("<td></td>");
+			pre = $("<pre></pre>");
+			if(isNumber(key)) {
+				tr.append(
+					td.append(
+						pre.append(value)
+					)
+				);
+			} else {
+				tr.append(
+					th.html(key),
+					td.append(
+						pre.append(value)
+					)
+				);
+			}
+			return tr[0].outerHTML;
+		}
+		function isObject(obj) {
+			return (obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype) || Array.isArray(obj);
+		}
+		function isNumber(n) {
+			return (Object.prototype.toString.call(n) === '[object Number]' || Object.prototype.toString.call(n) === '[object String]') &&!isNaN(parseFloat(n)) && isFinite(n.toString().replace(/^-/, ''));
+		}
+		function keySort(hash){
+			var newtable =new Object;
+			var keylist=new Array;
+			for(var i in hash) keylist.push(i);
+			keylist.sort();
+			for(var i in keylist) {
+				newtable[keylist[i]] = hash[keylist[i]];
+			}
+			return newtable;
+		}
+	</script>
+</body>
+</html>

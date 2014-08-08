@@ -1,0 +1,10 @@
+---
+packages:
+    - php54-fpm
+
+process_manager: dynamic
+max_children: 1
+start_servers: 1
+min_spare_servers: 1
+max_spare_servers: 1
+max_requests: 500

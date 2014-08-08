@@ -1,0 +1,13 @@
+[www]
+listen = {{ fastcgi.pass }}
+listen.owner = nginx
+listen.group = nginx
+listen.mode = 0660
+user = nginx
+group = nginx
+pm = {{ process_manager }}
+pm.max_children = {{ max_children }}
+pm.start_servers = {{ start_servers }}
+pm.min_spare_servers = {{ min_spare_servers }}
+pm.max_spare_servers = {{ max_spare_servers }}
+pm.max_requests = {{ max_requests }}

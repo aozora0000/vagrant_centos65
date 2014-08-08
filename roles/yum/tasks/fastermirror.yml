@@ -1,0 +1,3 @@
+---
+- name: FasterMirrorリポジトリ日本サーバーのみ参照に変更
+  command: echo include_only=.jp >> /etc/yum/pluginconf.d/fastestmirror.conf
