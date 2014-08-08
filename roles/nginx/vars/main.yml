@@ -1,6 +1,7 @@
 ---
-packages:
-    - nginx
+nginx:
+    packages:
+        - name: nginx
 
 ansible:
     root: '/var/www/html'

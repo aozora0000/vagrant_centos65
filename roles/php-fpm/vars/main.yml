@@ -1,6 +1,7 @@
 ---
-packages:
-    - php54-fpm
+phpfpm:
+    package:
+        - name: php54-fpm
 
 process_manager: dynamic
 max_children: 1

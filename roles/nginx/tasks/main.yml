@@ -1,8 +1,7 @@
 ---
 - name: Nginxインストール(最新版)
-  yum: name={{ item }} state=latest
-  with_items:
-    - "{{ packages }}"
+  yum: name={{ item.name }} state=latest
+  with_items: nginx.packages
   notify:
     - restart php-fpm
 

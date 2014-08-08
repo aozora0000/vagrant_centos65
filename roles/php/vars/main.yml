@@ -1,7 +1,8 @@
 ---
-packages:
- - php54
- - php54-common
- - php54-mysql
- - php54-mcrypt
- - php54-xml
+php:
+    packages:
+     - name: php54
+     - name: php54-common
+     - name: php54-mysql
+     - name: php54-mcrypt
+     - name: php54-xml

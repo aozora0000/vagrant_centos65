@@ -1,4 +1,5 @@
 ---
-packages:
-    - mysql-server
-    - mysql-devel
+mysql:
+    packages:
+        - name: mysql-server
+        - name: mysql-devel

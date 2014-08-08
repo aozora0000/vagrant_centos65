@@ -1,8 +1,7 @@
 ---
 - name: Apacheインストール(最新版)
-  yum: name={{ item }} state=latest
-  with_items :
-   - "{{ packages }}"
+  yum: name={{ item.name }} state=latest
+  with_items : apache.packages
 
 - name: Apache設定ファイル設置
   template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf

@@ -1,8 +1,7 @@
 ---
 - name: PHPインストール
-  yum:  name={{ item }} state=installed
-  with_items :
-   - "{{ packages }}"
+  yum:  name={{ item.name }} state=installed
+  with_items : php.packages
 
 - name: php設定ファイル設置
   template: src=php.ini.j2 dest=/etc/php.ini

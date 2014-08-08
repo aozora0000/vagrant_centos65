@@ -1,8 +1,7 @@
 ---
 - name: PHP-FPMインストール
-  yum: name={{ item }} state=latest
-  with_items:
-    - "{{ packages }}"
+  yum: name={{ item.name }} state=latest
+  with_items: phpfpm.package
 
 - name: PHP-FPM設定ファイル設置
   template: src=www.conf.j2 dest=/etc/php-fpm.d/www.conf
