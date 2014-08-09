@@ -1,0 +1,21 @@
+---
+mongo:
+    packages:
+        - name: mongodb-org
+    port: 27017
+    dbpath: /var/lib/mongo
+    bind_ip: All
+    httpinterface: false
+    cpulog: true
+    slowms: 100
+    traceExceptions: false
+    unixsocket: /var/run/mongodb
+    rest: true
+    jsonp: false
+    maxConnection: 20000
+    journaldelay: 200
+    syncdelay: 100
+    smallfiles: false
+    auth: false
+    objcheck: false
+    noscripting: false

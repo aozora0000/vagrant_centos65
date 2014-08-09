@@ -6,3 +6,6 @@ php:
      - name: php54-mysql
      - name: php54-mcrypt
      - name: php54-xml
+     - name: php54-pear
+     - name: php54-gd
+     - name: php54-pecl-mongo

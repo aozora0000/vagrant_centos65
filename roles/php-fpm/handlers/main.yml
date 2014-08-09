@@ -1,3 +1,3 @@
 ---
 - name: restart php-fpm
-  action: service php-fpm state=restarted
+  service: name=php-fpm state=restarted

@@ -1,0 +1,88 @@
+# ---------------------------
+#  一般関係
+# ---------------------------
+
+# データベースパス
+dbpath={{mongo.dbpath}}
+
+# バックグラウンド動作
+fork=true
+
+# ---------------------------
+#  ログ関係
+# ---------------------------
+
+# ログ用パス
+logpath=/var/log/mongodb/mongod.log
+
+# ログ追加
+logappend=true
+
+# CPU使用率をログに出力
+cpu={{mongo.cpulog}}
+
+# PIDパス
+# pidfilepath=/var/run/mongodb/mongod.pid
+
+# プロファイラレベル
+profile=0
+
+# スロークエリ閾値(ms)
+slowms={{mongo.slowms}}
+
+# トレース出力
+traceExceptions={{mongo.traceExceptions}}
+
+# ---------------------------
+#  インターフェイス関連
+# ---------------------------
+
+# ポート設定
+port={{mongo.port}}
+
+# UNIXソケットファイルのパス
+unixSocketPrefix={{mongo.unixsocket}}
+
+# 許可アクセスIP
+bind_ip={{mongo.bind_ip}}
+
+# HTTP接続(IP+1000/default: 28017)
+httpinterface={{mongo.httpinterface}}
+
+# restインターフェイス許可
+rest={{mongo.rest}}
+
+# JsonPの許可
+jsonp={{mongo.jsonp}}
+
+# ---------------------------
+#  チューニング関連
+# ---------------------------
+
+# 最大コネクション数
+#maxConns={{mongo.maxConnection}}
+
+# テーブル分割
+#directoryperdb=false
+
+# ジャーナルのフラッシュタイミング
+#journalCommitInterval: {{mongo.journaldelay}}
+
+# ジャーナルの書き込みタイミング
+#syncdelay={{mongo.syncdelay}}
+
+# データファイルのサイズ制限
+#smallfiles={{mongo.smallfiles}}
+
+# ---------------------------
+#  セキュリティ関連
+# ---------------------------
+
+# 認証の許可
+auth={{mongo.auth}}
+
+# 不正オブジェクトの検知
+objcheck={{mongo.objcheck}}
+
+# サーバーサイドのEVAL不許可
+noscripting={{mongo.noscripting}}

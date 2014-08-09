@@ -7,8 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "centos65"
     config.vm.box_url = "https://s3-ap-northeast-1.amazonaws.com/aozora-boxes/CentOS-6.4-x86.box"
-    config.vm.network :public_network, ip: "192.168.1.91"
-    #config.vm.network :private_network, ip: "192.168.33.30"
+    #config.vm.network :public_network, ip: "192.168.1.91"
+    config.vm.network :private_network, ip: "192.168.33.30"
     config.vm.synced_folder "./html", "/var/www/html", mount_options: ['dmode=777', 'fmode=666']
 
     config.vm.provider "virtualbox" do |vb|
