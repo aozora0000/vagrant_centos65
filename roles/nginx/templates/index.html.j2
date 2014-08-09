@@ -58,14 +58,14 @@
 </head>
 <body>
 	<div class="pure-g">
-		<h1>このページは{{ ansible_eth1.ipv4.address}}のページです</h1>
+		<h1>このページは{{ ansible_eth1.ipv4.address }}のページです</h1>
 		<h2>ルートディレクトリは[{{ ansible.root }}]です</h2>
 		<table id="ansible" class="pure-table"></table>
 	</div>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$.get("http://192.168.1.91/ansible.json",function(json) {
+			$.get("http://{{ ansible_eth1.ipv4.address}}/ansible.json",function(json) {
 				$("#ansible").html(createTable(json));
 			});
 		});

@@ -9,3 +9,5 @@ php:
      - name: php54-pear
      - name: php54-gd
      - name: php54-pecl-mongo
+     - name: php54-xmlrpc
+     - name: php54-mbstring
